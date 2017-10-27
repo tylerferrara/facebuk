@@ -12,10 +12,6 @@ public class Pet extends FacebukUser implements UserItems{
 		super(name,image);
 		
 	}
-	public void  setFriends(ArrayList<Person> friends)
-	{
-		this.friends = friends;
-	}
 	public void setOwner(Person owner)
 	{
 		this.owner = owner;
