@@ -26,7 +26,28 @@ public class SimpleTester {
 		michelleFriends.add(ina);
 		michelle.setFriends(michelleFriends);
 		
-		//Moments
+		ArrayList<FacebukUser> barackFriends = new ArrayList<FacebukUser>();
+		barackFriends.add(michelle);
+		barackFriends.add(joe);
+		barackFriends.add(kevin);
+		barack.setFriends(barackFriends);
+		
+		ArrayList<FacebukUser> kevinFriends = new ArrayList<FacebukUser>();
+		kevinFriends.add(barack);
+		kevinFriends.add(kevin);
+		kevinFriends.add(michelle);
+		kevin.setFriends(kevinFriends);
+		
+		
+		for(FacebukUser f: michelle.getFriends())
+		{
+			System.out.println(f.getName());
+		}
+		
+		for(ArrayList<FacebukUser> lst: michelle.generateList())
+		{
+			System.out.println(lst.toString());
+		}
 
 	}
 

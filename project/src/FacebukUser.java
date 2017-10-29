@@ -118,14 +118,19 @@ public class FacebukUser {
 //	}
 	private ArrayList<FacebukUser> findClique()
 	{
-		ArrayList<FacebukUser> cliques = new ArrayList<FacebukUser>();
-		if( (this.friends != null) && (this.friends.size()>1))
+		ArrayList<FacebukUser> clique = new ArrayList<FacebukUser>();
+		ArrayList<ArrayList<FacebukUser>> deepFriends = generateList();
+		
+		for(ArrayList<FacebukUser> friendList: deepFriends)
 		{
-			
+			for(FacebukUser user: friendList)
+			{
+				
+			}
 		}
-		return cliques;
+		return clique;
 	}
-	private ArrayList<ArrayList<FacebukUser>> generateList()
+	public ArrayList<ArrayList<FacebukUser>> generateList()
 	{
 		ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();
 		if(this.friends != null && this.friends.size() > 0) 
