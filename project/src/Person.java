@@ -17,7 +17,7 @@ public class Person extends FacebukUser
 //		this.friends = friends;
 //		this.possessions = possessions;
 	}
-	public void setPossesions(ArrayList<Possession> possessions)
+	public void setPossessions(ArrayList<Possession> possessions)
 	{
 		this.possessions = possessions;
 	}
