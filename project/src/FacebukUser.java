@@ -111,4 +111,77 @@ public class FacebukUser {
 			return null;
 		}
 	}
+	//Returns a list of the largest possible group of facebuk users who are friends with the target user
+	public ArrayList<FacebukUser> findMaximumCliqueOfFriends()
+	{
+		
+	}
+	private ArrayList<FacebukUser> findClique()
+	{
+		if( (this.friends != null) && (this.friends.size()>1))
+		{
+			
+		}
+	}
+//	private ArrayList<FacebukUser> getClique(FacebukUser target, ArrayList<FacebukUser> visited)
+//	{
+//		if(allFriendsIncluded(target, visited)) // base-case
+//		{
+//			return 
+//		}
+//		
+//		for(FacebukUser f: target.friends)
+//		{
+//			if(!visited.contains(target))
+//			{
+//				
+//			}
+//		}
+//	}
+//	private boolean allFriendsIncluded(FacebukUser target, ArrayList<FacebukUser> visited)
+//	{
+//		boolean allIncluded = true;
+//		int i = 0;
+//		while(allIncluded)
+//		{
+//			if(!visited.contains(target.friends.get(i)))
+//			{
+//				allIncluded = false;
+//			}
+//		}
+//		return allIncluded;
+//	}
+	private ArrayList<ArrayList<FacebukUser>> generateList()
+	{
+		ArrayList<ArrayList<FacebukUser>> listOfFriends;
+		if(this.friends != null ** this.friends.size() > 0)
+		{
+			for(int i = 0; i< this.friends.size(); i++)
+			{
+				
+			}
+		}
+	}
+	private ArrayList<ArrayList<FacebukUser>> generateList()
+	{
+		ArrayList<ArrayList<FacebukUser>> list;
+		if(this.friends != null && this.friends.size() > 0) 
+		{
+			for(int i = 0; i < this.friends.size(); i++) 
+			{
+				FacebukUser subFriend = new FacebukUser();
+				subFriend = this.friends.get(i);
+				if(subFriend.friends != null && subFriend.friends.size() > 0)
+				{
+					list.add(friends.get(i));
+					for(int k = 0; k < subFriend.friends.size(); k++)
+					{
+						list.add(subFriend.friends.get(k));
+					}
+				}
+			}
+		}
+		return list;
+	}
+
 }
