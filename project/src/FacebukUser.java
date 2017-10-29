@@ -112,76 +112,37 @@ public class FacebukUser {
 		}
 	}
 	//Returns a list of the largest possible group of facebuk users who are friends with the target user
-	public ArrayList<FacebukUser> findMaximumCliqueOfFriends()
-	{
-		
-	}
+//	public ArrayList<FacebukUser> findMaximumCliqueOfFriends()
+//	{
+//		
+//	}
 	private ArrayList<FacebukUser> findClique()
 	{
+		ArrayList<FacebukUser> cliques = new ArrayList<FacebukUser>();
 		if( (this.friends != null) && (this.friends.size()>1))
 		{
 			
 		}
-	}
-//	private ArrayList<FacebukUser> getClique(FacebukUser target, ArrayList<FacebukUser> visited)
-//	{
-//		if(allFriendsIncluded(target, visited)) // base-case
-//		{
-//			return 
-//		}
-//		
-//		for(FacebukUser f: target.friends)
-//		{
-//			if(!visited.contains(target))
-//			{
-//				
-//			}
-//		}
-//	}
-//	private boolean allFriendsIncluded(FacebukUser target, ArrayList<FacebukUser> visited)
-//	{
-//		boolean allIncluded = true;
-//		int i = 0;
-//		while(allIncluded)
-//		{
-//			if(!visited.contains(target.friends.get(i)))
-//			{
-//				allIncluded = false;
-//			}
-//		}
-//		return allIncluded;
-//	}
-	private ArrayList<ArrayList<FacebukUser>> generateList()
-	{
-		ArrayList<ArrayList<FacebukUser>> listOfFriends;
-		if(this.friends != null ** this.friends.size() > 0)
-		{
-			for(int i = 0; i< this.friends.size(); i++)
-			{
-				
-			}
-		}
+		return cliques;
 	}
 	private ArrayList<ArrayList<FacebukUser>> generateList()
 	{
-		ArrayList<ArrayList<FacebukUser>> list;
+		ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();
 		if(this.friends != null && this.friends.size() > 0) 
 		{
-			for(int i = 0; i < this.friends.size(); i++) 
+			for(FacebukUser f: this.friends)
 			{
-				FacebukUser subFriend = new FacebukUser();
-				subFriend = this.friends.get(i);
-				if(subFriend.friends != null && subFriend.friends.size() > 0)
+				ArrayList<FacebukUser> list2 = new ArrayList<FacebukUser>();
+				if(f.friends != null && f.friends.size() > 0)
 				{
-					list.add(friends.get(i));
-					for(int k = 0; k < subFriend.friends.size(); k++)
+					for(FacebukUser f2: f.friends)
 					{
-						list.add(subFriend.friends.get(k));
+						list2.add(f2);
 					}
 				}
+				list.add(list2);
 			}
 		}
 		return list;
 	}
-
 }
