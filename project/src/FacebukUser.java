@@ -142,19 +142,16 @@ public class FacebukUser {
 		if(set != null && set.size() > 0)
 		{
 			test = true;
-			int i = 0;
-			while(test && set.size() > i)
+			for(FacebukUser user: set)
 			{
-				FacebukUser user = set.get(i);
-				for(int j = 0; j < set.size(); j++)
+				for(FacebukUser otherUser: set)
 				{
-					if(j != i && !user.friends.contains(set.get(j)))
+					if(!user.equals(otherUser) && user.friends != null && !user.friends.contains(otherUser))
 					{
 						test = false;
 						break;
 					}
 				}
-				i++;
 			}
 		} else
 		{
