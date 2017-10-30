@@ -5,11 +5,11 @@ public class Moment
 	public String name;
 	public Image image;
 	public ArrayList<FacebukUser> participants;
-	public ArrayList<Integer> smileValues;
+	public ArrayList<Float> smileValues;
 	public Moment() 
 	{	
 	}
-	public Moment(String name, Image image, ArrayList<FacebukUser> participants, ArrayList<Integer> smileValues)
+	public Moment(String name, Image image, ArrayList<FacebukUser> participants, ArrayList<Float> smileValues)
 	{
 		this.name = name;
 		this.image = image;
@@ -28,7 +28,7 @@ public class Moment
 	{
 		this.participants = participants;		
 	}
-	public void setSmileValues(ArrayList<Integer> smileValues)
+	public void setSmileValues(ArrayList<Float> smileValues)
 	{
 		this.smileValues = smileValues;
 	}

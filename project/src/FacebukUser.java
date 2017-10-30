@@ -38,13 +38,13 @@ public class FacebukUser {
 		if(this.friends.size() > 0) 
 		{
 			FacebukUser HappiestWithFriend = new FacebukUser();
-			int maxHappyLevel = -100000;
+			float maxHappyLevel = -100000;
 			// get each friend		
 			for(int i = 0; i < this.friends.size(); i++)
 			{
 				FacebukUser f = this.friends.get(i);
 				// find max Happy Value with main User 
-				int friendMax = maxHappyLevelOfPersonInMoments(FacebukUser.this, f.moments); 
+				float friendMax = maxHappyLevelOfPersonInMoments(FacebukUser.this, f.moments); 
 				// ******NOTE: ^^^^ is FacebukUser.this main User!!!!!!!??? ******
 				if(friendMax > maxHappyLevel)
 				{	
@@ -60,22 +60,28 @@ public class FacebukUser {
 			return null;
 		}		
 	}
-	private Integer maxHappyLevelOfPersonInMoments(FacebukUser user, ArrayList<Moment> moments)
+	private Float maxHappyLevelOfPersonInMoments(FacebukUser user, ArrayList<Moment> moments)
 	{	
-		int maxHappyVal = -100000; 
-		for(int i = 0; i < moments.size(); i++)
+		float maxHappyVal = -100000; 
+		if(moments != null && moments.size() > 0)
 		{
-			Moment m = moments.get(i);
-			for(int k = 0; k < m.participants.size(); k++)
+			for(int i = 0; i < moments.size(); i++)
 			{
-				FacebukUser p = m.participants.get(k);
-				if(p.equals(user))
+				Moment m = moments.get(i);
+				if(m.participants != null && m.participants.size() > 0)
 				{
-					// User is in this moment!!!
-					if(m.smileValues.get(k) > maxHappyVal)
+					for(int k = 0; k < m.participants.size(); k++)
 					{
-						// Add to the maxHappyVal
-						maxHappyVal = m.smileValues.get(k);
+						FacebukUser p = m.participants.get(k);
+						if(p.equals(user))
+						{
+							// User is in this moment!!!
+							if(m.smileValues.get(k) > maxHappyVal)
+							{
+								// Add to the maxHappyVal
+								maxHappyVal = m.smileValues.get(k);
+							}
+						}
 					}
 				}
 			}
@@ -88,15 +94,15 @@ public class FacebukUser {
 		if(this.moments.size() > 0)
 		{
 			Moment bestMoment = new Moment(); 
-			int maxHappyAvg = -10000;
+			float maxHappyAvg = -10000;
 			for(Moment m : this.moments)
 			{
-				int happySum = 0;
-				for(int val : m.smileValues)
+				float happySum = 0;
+				for(float val : m.smileValues)
 				{
 					happySum += val;
 				}
-				int happyAvg = happySum / m.smileValues.size();
+				float happyAvg = happySum / m.smileValues.size();
 				if(happyAvg > maxHappyAvg)
 				{
 					// new best moment
