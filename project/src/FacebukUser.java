@@ -136,6 +136,32 @@ public class FacebukUser {
 		}
 		return clique;
 	}
+	public static boolean isClique (ArrayList<FacebukUser> set)
+	{
+		boolean test;
+		if(set != null && set.size() > 0)
+		{
+			test = true;
+			int i = 0;
+			while(test && set.size() > i)
+			{
+				FacebukUser user = set.get(i);
+				for(int j = 0; j < set.size(); j++)
+				{
+					if(j != i && !user.friends.contains(set.get(j)))
+					{
+						test = false;
+						break;
+					}
+				}
+				i++;
+			}
+		} else
+		{
+			test = false;
+		}
+		return test;
+	}
 	public ArrayList<ArrayList<FacebukUser>> generateList()
 	{
 		ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();

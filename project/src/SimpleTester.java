@@ -39,15 +39,13 @@ public class SimpleTester {
 		kevin.setFriends(kevinFriends);
 		
 		
-		for(FacebukUser f: michelle.getFriends())
-		{
-			System.out.println(f.getName());
-		}
+		ArrayList<FacebukUser> realClique = new ArrayList<FacebukUser>();
+		realClique.add(barack);
+		realClique.add(michelle);
+		realClique.add(kevin);
 		
-		for(ArrayList<FacebukUser> lst: michelle.generateList())
-		{
-			System.out.println(lst.toString());
-		}
+		System.out.println(michelle.isClique(realClique));
+		
 
 	}
 
