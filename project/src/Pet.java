@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Pet extends FacebukUser implements UserItems{
+public class Pet extends FacebukUser{
 	public Person owner;
 	public ArrayList<Person> friends;
 	public Pet()
@@ -16,4 +16,8 @@ public class Pet extends FacebukUser implements UserItems{
 	{
 		this.owner = owner;
 	}
+	//public String getName()
+	//{
+	//	return this.getName();
+	//}
 }

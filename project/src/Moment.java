@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Moment 
+public class Moment extends FacebookObject 
 {
 	public String name;
 	public Image image;
@@ -31,5 +31,9 @@ public class Moment
 	public void setSmileValues(ArrayList<Float> smileValues)
 	{
 		this.smileValues = smileValues;
+	}
+	public String getName()
+	{
+		return this.name;
 	}
 }

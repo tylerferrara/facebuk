@@ -1,26 +1,24 @@
 import java.util.ArrayList;
 
-public class FacebukUser {
-	private  String name;
+public class FacebukUser extends FacebookObject{
+	//private  String name;
 	private Image image;
 	private ArrayList<FacebukUser> friends;
 	public ArrayList<Moment> moments;  // SHOULD THIS BE PUBLIC???
 	
 	public FacebukUser()
-	{}
+	{
+		super();
+	}
 	public FacebukUser(String name, Image image)
 	{
-		this.name = name;
+		super(name);
 		this.image = image;
 	}
-	public String getName()
-	{
-		return name;
-	}
-	public Image getImage()
-	{
-		return image;
-	}
+//	public String getName()
+//	{
+//		return name;
+//	}
 	public ArrayList<FacebukUser> getFriends() 
 	{
 		return friends;
@@ -124,17 +122,47 @@ public class FacebukUser {
 //	}
 	private ArrayList<FacebukUser> findClique()
 	{
-		ArrayList<FacebukUser> clique = new ArrayList<FacebukUser>();
-		ArrayList<ArrayList<FacebukUser>> deepFriends = generateList();
+		ArrayList<FacebukUser> collection = new ArrayList<FacebukUser>();
 		
-		for(ArrayList<FacebukUser> friendList: deepFriends)
+		for(FacebukUser f: this.friends)
 		{
-			for(FacebukUser user: friendList)
+			ArrayList<FacebukUser> pClique = new ArrayList<FacebukUser>();
+			pClique.add(f);
+			
+			for(FacebukUser newF: this.friends)
 			{
-				
+				if(!pClique.contains(newF))
+				{
+					ArrayList<FacebukUser> temp = pClique;
+					temp.add(newF);
+					if(isClique(temp))
+					{
+						pClique.add(newF);
+					}
+				}
 			}
+			for(FacebukUser clique:  pClique)
+				{
+					collection.add(clique);
+				}
 		}
-		return clique;
+		return collection;	
+	}
+	
+	private ArrayList<FacebukUser> getLargest(ArrayList<ArrayList<FacebukUser>> list)
+	{
+		int temp = 0;
+		int index =0;
+		for(int i=0; i< list.size();i++)
+		{
+			if(list.get(i).size() > temp)
+				{
+					temp = list.get(i).size();
+					index = i;
+				}
+		}
+		return list.get(index);
+		
 	}
 	public static boolean isClique (ArrayList<FacebukUser> set)
 	{
@@ -159,6 +187,7 @@ public class FacebukUser {
 		}
 		return test;
 	}
+	
 	public ArrayList<ArrayList<FacebukUser>> generateList()
 	{
 		ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();
@@ -179,4 +208,5 @@ public class FacebukUser {
 		}
 		return list;
 	}
+	
 }

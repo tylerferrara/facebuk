@@ -11,9 +11,9 @@ public class Person extends FacebukUser
 	{
 		super();
 	}
-	public Person(String name, Image image)
+	public Person(String name, Image image)//ADD IMAGE BACK FOR SUBMITTION
 	{
-		super(name, image);
+		super(name, image);//ADD IMAGE BACK FOR SUBMITTION
 //		this.friends = friends;
 //		this.possessions = possessions;
 	}
@@ -25,6 +25,7 @@ public class Person extends FacebukUser
 	{
 		this.pets = pets;
 	}
+
 	
 	
 }

@@ -1,17 +1,19 @@
 
-public class Possession implements UserItems{
-	private String name;
+public class Possession extends FacebookObject{
+	//private String name;
 	private Image image;
 	private float price;
 	private Person owner;
 	
 	public Possession()
-	{}
+	{
+		super();
+	}
 	
 	
 	public Possession(String name, Image image, float price)
 	{
-		this.name = name;
+		super(name);
 		this.image = image;
 		this.price = price;
 	}
@@ -19,6 +21,10 @@ public class Possession implements UserItems{
 	{
 		this.owner = owner;
 	}
+//	public String getName()
+//	{
+//		return this.name;
+//	}
 	
 
 }
