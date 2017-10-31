@@ -122,7 +122,7 @@ public class FacebukUser extends FacebookObject{
 //	}
 	private ArrayList<FacebukUser> findClique()
 	{
-		ArrayList<FacebukUser> collection = new ArrayList<FacebukUser>();
+		ArrayList<ArrayList<FacebukUser>> collection = new ArrayList<ArrayList<FacebukUser>>();
 		
 		for(FacebukUser f: this.friends)
 		{
@@ -141,29 +141,36 @@ public class FacebukUser extends FacebookObject{
 					}
 				}
 			}
-			for(FacebukUser clique:  pClique)
-				{
-					collection.add(clique);
-				}
+			collection.add(pClique);
 		}
-		return collection;	
+		//find the largest array in collection
+		ArrayList<FacebukUser> largest = new ArrayList<FacebukUser>();
+		for(ArrayList<FacebukUser> clique: collection)
+		{
+			if(largest.equals(null) || largest.size() < clique.size())
+			{
+				largest = clique;
+			}
+		}	
+		return largest;
 	}
 	
-	private ArrayList<FacebukUser> getLargest(ArrayList<ArrayList<FacebukUser>> list)
-	{
-		int temp = 0;
-		int index =0;
-		for(int i=0; i< list.size();i++)
-		{
-			if(list.get(i).size() > temp)
-				{
-					temp = list.get(i).size();
-					index = i;
-				}
-		}
-		return list.get(index);
-		
-	}
+//	private ArrayList<FacebukUser> getLargest(ArrayList<ArrayList<FacebukUser>> list)
+//	{
+//		int outerList =
+//		int temp = 0;
+//		int index =0;
+//		for(int i=0; i< list.size();i++)
+//		{
+//			if(list.get(i).size() > temp)
+//				{
+//					temp = list.get(i).size();
+//					index = i;
+//				}
+//		}
+//		return list.get(index);
+//		
+//	}
 	public static boolean isClique (ArrayList<FacebukUser> set)
 	{
 		boolean test;
@@ -207,6 +214,25 @@ public class FacebukUser extends FacebookObject{
 			}
 		}
 		return list;
+	}
+	public static void main(String[] args)
+	{
+		FacebookObject test1 = new Person("Michelle2", new Image("Michelle2.png"));
+		
+		ArrayList<FacebukUser> friends = new ArrayList<FacebukUser>();
+		
+		FacebookObject test2 = new Pet("xd", new Image("Michelle2.png"));
+		FacebookObject test3 = new Person ("Meme", new Image("Michelle2.png"));
+		FacebookObject test4 = new Person("Meme2", new Image ("Michelle2.png"));
+		friends.add((Person) test2);
+		friends.add((Person) test3);
+		friends.add((Person) test4);
+		
+		((Person) test1).setFriends(friends);
+		
+		
+		
+		
 	}
 	
 }
