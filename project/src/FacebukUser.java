@@ -129,7 +129,7 @@ public class FacebukUser extends FacebookObject{
 			ArrayList<FacebukUser> pClique = new ArrayList<FacebukUser>();
 			pClique.add(f);
 			
-			for(FacebukUser newF: this.friends)
+			for(FacebukUser newF: f.friends)
 			{
 				if(!pClique.contains(newF))
 				{

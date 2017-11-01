@@ -172,5 +172,10 @@ public class TestExamples {
 		assertEquals(_michelle.getOverallHappiestMoment(), _michelle.moments.get(0));
 		assertEquals(_bo.getOverallHappiestMoment(), _bo.moments.get(0));
 	}
+	@Test
+	public void checkEquals()
+	{
+		assertEquals()
+	}
 
 }
