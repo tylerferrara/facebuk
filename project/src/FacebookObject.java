@@ -82,5 +82,6 @@ public class FacebookObject {
 		
 		//Create tests for Moments and possessions as well
 	}
+
 }
 

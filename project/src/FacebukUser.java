@@ -5,7 +5,7 @@ public class FacebukUser extends FacebookObject{
 	private Image image;
 	private ArrayList<FacebukUser> friends;
 	public ArrayList<Moment> moments;  // SHOULD THIS BE PUBLIC???
-	
+
 	public FacebukUser()
 	{
 		super();
@@ -15,10 +15,10 @@ public class FacebukUser extends FacebookObject{
 		super(name);
 		this.image = image;
 	}
-//	public String getName()
-//	{
-//		return name;
-//	}
+	//	public String getName()
+	//	{
+	//		return name;
+	//	}
 	public ArrayList<FacebukUser> getFriends() 
 	{
 		return friends;
@@ -116,123 +116,142 @@ public class FacebukUser extends FacebookObject{
 		}
 	}
 	//Returns a list of the largest possible group of facebuk users who are friends with the target user
-//	public ArrayList<FacebukUser> findMaximumCliqueOfFriends()
-//	{
-//		
-//	}
-	private ArrayList<FacebukUser> findClique()
+	//	public ArrayList<FacebukUser> findMaximumCliqueOfFriends()
+	//	{
+	//		
+	//	}
+	protected ArrayList<FacebukUser> findClique()
 	{
 		ArrayList<ArrayList<FacebukUser>> collection = new ArrayList<ArrayList<FacebukUser>>();
-		
+
 		for(FacebukUser f: this.friends)
 		{
 			ArrayList<FacebukUser> pClique = new ArrayList<FacebukUser>();
 			pClique.add(f);
+			if(f.friends!=null)
+			{
+				for(FacebukUser newF: f.friends)
+				{
+					if(!pClique.contains(newF))
+					{
+						ArrayList<FacebukUser> temp = new ArrayList<FacebukUser>(pClique);
+						temp.add(newF);
+						if(isClique(temp))
+						{
+							pClique.add(newF);
+						}
+					}
+				}
+			}
+				collection.add(pClique);
+			}
+			//find the largest array in collection
+			ArrayList<FacebukUser> largest = new ArrayList<FacebukUser>();
+			for(ArrayList<FacebukUser> clique: collection)
+			{
+				if(largest.equals(null) || largest.size() < clique.size())
+				{
+					largest = clique;
+				}
+			}	
+			return largest;
+		}
+
+		//	private ArrayList<FacebukUser> getLargest(ArrayList<ArrayList<FacebukUser>> list)
+		//	{
+		//		int outerList =
+		//		int temp = 0;
+		//		int index =0;
+		//		for(int i=0; i< list.size();i++)
+		//		{
+		//			if(list.get(i).size() > temp)
+		//				{
+		//					temp = list.get(i).size();
+		//					index = i;
+		//				}
+		//		}
+		//		return list.get(index);
+		//		
+		//	}
+		public static boolean isClique (ArrayList<FacebukUser> set)
+		{
+			boolean test;
+			if(set != null && set.size() > 0)
+			{
+				test = true;
+				for(FacebukUser user: set)
+				{
+					for(FacebukUser otherUser: set)
+					{
+						if(!user.equals(otherUser) && user.friends != null && !user.friends.contains(otherUser))
+						{
+							test = false;
+							break;
+						}
+					}
+				}
+			} else
+			{
+				test = false;
+			}
+			return test;
+		}
+
+		public ArrayList<ArrayList<FacebukUser>> generateList()
+		{
+			ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();
+			if(this.friends != null && this.friends.size() > 0) 
+			{
+				for(FacebukUser f: this.friends)
+				{
+					ArrayList<FacebukUser> list2 = new ArrayList<FacebukUser>();
+					if(f.friends != null && f.friends.size() > 0)
+					{
+						for(FacebukUser f2: f.friends)
+						{
+							list2.add(f2);
+						}
+					}
+					list.add(list2);
+				}
+			}
+			return list;
+		}
+		public static void main(String[] args)
+		{
+			FacebookObject test1 = new Person("Michelle2", new Image("Michelle2.png"));
+
+			ArrayList<FacebukUser> friends = new ArrayList<FacebukUser>();
+			ArrayList<FacebukUser> testFriends = new ArrayList<FacebukUser>();
+			FacebookObject test2 = new Pet("test2", new Image("Michelle2.png"));
+			FacebookObject test3 = new Person ("test3", new Image("Michelle2.png"));
+			FacebookObject test4 = new Person("test4", new Image ("Michelle2.png"));
 			
-			for(FacebukUser newF: f.friends)
-			{
-				if(!pClique.contains(newF))
-				{
-					ArrayList<FacebukUser> temp = pClique;
-					temp.add(newF);
-					if(isClique(temp))
-					{
-						pClique.add(newF);
-					}
-				}
-			}
-			collection.add(pClique);
+			friends.add((Pet) test2);
+			friends.add((Person) test3);
+			friends.add((Person) test4);
+			testFriends.add((Person) test3); 
+			
+			
+			
+			((Person) test4).setFriends(testFriends);
+			((Person) test1).setFriends(friends);
+			
+			System.out.println(friends + "         friends");
+			System.out.println(testFriends + "     testFriends");
+			
+			System.out.println(((FacebukUser)test1).getFriends() + "             test1.getFriends()");
+			System.out.println(((FacebukUser)test4).getFriends() + "             test4.getFriends()");
+			
+			System.out.println(((FacebukUser) test1).findClique() + "        test1.findClique()");
+			System.out.println(((FacebukUser) test4).findClique() + "        test4.findClique()");
+
+
+
 		}
-		//find the largest array in collection
-		ArrayList<FacebukUser> largest = new ArrayList<FacebukUser>();
-		for(ArrayList<FacebukUser> clique: collection)
+		public String toString()
 		{
-			if(largest.equals(null) || largest.size() < clique.size())
-			{
-				largest = clique;
-			}
-		}	
-		return largest;
-	}
-	
-//	private ArrayList<FacebukUser> getLargest(ArrayList<ArrayList<FacebukUser>> list)
-//	{
-//		int outerList =
-//		int temp = 0;
-//		int index =0;
-//		for(int i=0; i< list.size();i++)
-//		{
-//			if(list.get(i).size() > temp)
-//				{
-//					temp = list.get(i).size();
-//					index = i;
-//				}
-//		}
-//		return list.get(index);
-//		
-//	}
-	public static boolean isClique (ArrayList<FacebukUser> set)
-	{
-		boolean test;
-		if(set != null && set.size() > 0)
-		{
-			test = true;
-			for(FacebukUser user: set)
-			{
-				for(FacebukUser otherUser: set)
-				{
-					if(!user.equals(otherUser) && user.friends != null && !user.friends.contains(otherUser))
-					{
-						test = false;
-						break;
-					}
-				}
-			}
-		} else
-		{
-			test = false;
+			return this.getName();
 		}
-		return test;
+
 	}
-	
-	public ArrayList<ArrayList<FacebukUser>> generateList()
-	{
-		ArrayList<ArrayList<FacebukUser>> list = new ArrayList<ArrayList<FacebukUser>>();
-		if(this.friends != null && this.friends.size() > 0) 
-		{
-			for(FacebukUser f: this.friends)
-			{
-				ArrayList<FacebukUser> list2 = new ArrayList<FacebukUser>();
-				if(f.friends != null && f.friends.size() > 0)
-				{
-					for(FacebukUser f2: f.friends)
-					{
-						list2.add(f2);
-					}
-				}
-				list.add(list2);
-			}
-		}
-		return list;
-	}
-	public static void main(String[] args)
-	{
-		FacebookObject test1 = new Person("Michelle2", new Image("Michelle2.png"));
-		
-		ArrayList<FacebukUser> friends = new ArrayList<FacebukUser>();
-		
-		FacebookObject test2 = new Pet("xd", new Image("Michelle2.png"));
-		FacebookObject test3 = new Person ("Meme", new Image("Michelle2.png"));
-		FacebookObject test4 = new Person("Meme2", new Image ("Michelle2.png"));
-		friends.add((Person) test2);
-		friends.add((Person) test3);
-		friends.add((Person) test4);
-		
-		((Person) test1).setFriends(friends);
-		
-		
-		
-		
-	}
-	
-}

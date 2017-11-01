@@ -175,7 +175,7 @@ public class TestExamples {
 	@Test
 	public void checkEquals()
 	{
-		assertEquals()
+		//assertEquals()
 	}
 
 }
